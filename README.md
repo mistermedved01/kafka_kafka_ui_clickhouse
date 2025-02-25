@@ -1,4 +1,4 @@
-## Задача:bulb:
+## Задача :bulb:
 
 1. Установить Kafka (VM - kafka)
 2. Установить Kafka UI (VM - kafka_ui)
@@ -7,7 +7,7 @@
 5. Настроить БД ClickHouse для хранения данных из Kafka.
 6. Через Kafka UI записать сообщение в Kafka и проверить, что оно появилось в ClickHouse
 
-### I. Отправка данных через консоль:pager::
+### I. Отправка данных через консоль :pager::
 
 #### 1. VM - kafka. Producer отправляет данные в `my_topic`:
 `echo '{"id": 1, "message": "Hello, ClickHouse!"}' | /opt/kafka/bin/kafka-console-producer.sh --topic my_topic --bootstrap-server 192.168.1.110:9092`
@@ -31,7 +31,7 @@
 #### Мы должны увидеть сообщение из пункта 1: 
 `1 Hello, ClickHouse! 2025-02-25 13:10:19`
 
-### II. Отправка данных через UI:vhs::
+### II. Отправка данных через UI :vhs::
 
 Kafka UI доступна по адресу: `http://192.168.1.111:8080/`
 
