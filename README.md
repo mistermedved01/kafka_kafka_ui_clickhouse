@@ -67,3 +67,7 @@ cd kafka_kafka_ui_clickhouse
 ```bash    
 vagrant up
 ```    
+
+**3. Kafka UI доступна по адресу:** 
+
+`http://192.168.1.111:8080/`
