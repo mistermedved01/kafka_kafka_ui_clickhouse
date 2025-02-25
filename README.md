@@ -8,28 +8,34 @@
 6. Через Kafka UI записать сообщение в Kafka и проверить, что оно появилось в ClickHouse
 
 ### I. Отправка данных через консоль :pager::
-
+*выполняется в kafka_install.sh* 
 #### 1. VM - kafka. Producer отправляет данные в `my_topic`:
-`echo '{"id": 1, "message": "Hello, ClickHouse!"}' | /opt/kafka/bin/kafka-console-producer.sh --topic my_topic --bootstrap-server 192.168.1.110:9092`
-
+```bash
+echo '{"id": 1, "message": "Hello, ClickHouse!"}' | /opt/kafka/bin/kafka-console-producer.sh --topic my_topic --bootstrap-server 192.168.1.110:9092`
+```
 #### 2. VM - kafka. Создает Topic из которого ClickHouse будет читать данные:
-`/opt/kafka/bin/kafka-topics.sh --create --topic my_topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1`
-
+```bash
+/opt/kafka/bin/kafka-topics.sh --create --topic my_topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+```
 #### 3. VM - kafka. Broker принимает данные от Producer, хранит их в топике и отдаёт Consumer.
+```bash
+/opt/kafka/config/server.properties
 
-`/opt/kafka/config/server.properties`
-
-`listeners=PLAINTEXT://0.0.0.0:9092`
-`advertised.listeners=PLAINTEXT://192.168.1.110:9092`
-
+listeners=PLAINTEXT://0.0.0.0:9092
+advertised.listeners=PLAINTEXT://192.168.1.110:9092
+```
 #### 4. VM - kafka. ZooKeeper управляет метаданными Kafka (топики, партиции, offset'ы) и координирует брокер.
 
 #### 5. VM - clickhouse. Consumer читает данные из `my_topic` и записывает в `my_data`
 
 #### VM - ClickHouse. Выполнив команду: 
-`clickhouse-client --query "SELECT * FROM my_data;"` 
-#### Мы должны увидеть сообщение из пункта 1: 
-`1 Hello, ClickHouse! 2025-02-25 13:10:19`
+```sql
+clickhouse-client --query "SELECT * FROM my_data;"
+``` 
+#### **Мы должны увидеть сообщение из пункта 1:** 
+```bash
+1 Hello, ClickHouse! 2025-02-25 13:10:19
+```
 
 ### II. Отправка данных через UI :vhs::
 
@@ -37,7 +43,7 @@ Kafka UI доступна по адресу: `http://192.168.1.111:8080/`
 
 Для записи сообщения через Kafka UI:
 
-Topics -> my_topic -> Produce Message -> В поле Value `{"id": 2, "message": "Test from Kafka UI"}`
+**Topics -> my_topic -> Produce Message ->** В поле **Value** `{"id": 2, "message": "Test from Kafka UI"}`
 
 Проверяем: `clickhouse-client --query "SELECT * FROM my_data;"` 
 
