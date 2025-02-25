@@ -50,3 +50,21 @@ Kafka UI доступна по адресу: `http://192.168.1.111:8080/`
 `2       Test from Kafka UI      2025-02-25 16:17:58` отправлено через UI 
 
 `1       Hello, ClickHouse!      2025-02-25 16:11:55` отправлено через консоль
+
+## Требования
+
+- **Vagrant** (version 2.2+)
+- **VirtualBox**
+
+**Установка**
+
+**1. Клонируем репозиторий:**
+```bash
+git clone https://github.com/mistermedved01/kafka_kafka_ui_clickhouse.git
+cd kafka_kafka_ui_clickhouse
+```
+
+**2. Инициализируем ВМ в Vagrant:**
+```bash    
+vagrant up
+```    
