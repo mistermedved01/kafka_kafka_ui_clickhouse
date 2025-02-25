@@ -37,7 +37,7 @@ Kafka UI доступна по адресу: `http://192.168.1.111:8080/`
 
 Для записи сообщения через Kafka UI:
 
-Topics -> my_topic -> Produce Message -> В поле Value `{"id": 1, "message": "Test from Kafka UI"}`
+Topics -> my_topic -> Produce Message -> В поле Value `{"id": 2, "message": "Test from Kafka UI"}`
 
 Проверяем: `clickhouse-client --query "SELECT * FROM my_data;"` 
 
